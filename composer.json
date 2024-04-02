@@ -1,0 +1,15 @@
+{
+    "name": "alignant/temperature",
+    "autoload": {
+        "psr-4": {
+            "Alignant\\Temperature\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Evgymart",
+            "email": "alignant@yandex.ru"
+        }
+    ],
+    "require": {}
+}
