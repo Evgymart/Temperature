@@ -2,7 +2,7 @@
     "name": "alignant/temperature",
     "autoload": {
         "psr-4": {
-            "Alignant\\Temperature\\": "src/"
+            "Alignant\\Temperature\\": "app/"
         }
     },
     "authors": [
@@ -11,5 +11,7 @@
             "email": "alignant@yandex.ru"
         }
     ],
-    "require": {}
+    "require": {
+        "symfony/http-kernel": "^7.0"
+    }
 }
