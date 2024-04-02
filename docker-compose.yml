@@ -1,0 +1,18 @@
+services:
+  php:
+    build: ./docker/php
+    image: php-app
+    restart: unless-stopped
+    ports:
+      - ":9000"
+    volumes:
+        - ./src/:/var/www/html
+
+  nginx:
+    image: nginx
+    restart: unless-stopped
+    volumes:
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d/
+
+    ports:
+      - "8080:80"
