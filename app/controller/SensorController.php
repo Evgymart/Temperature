@@ -7,10 +7,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SensorController extends BaseController
 {
-    public function read(): Response
+    public function read(string $ip): Response
     {
         $response = $this->getResponse();
-        $response->setContent('action read');
+        $response->setContent($ip);
         return $response;
     }
 }

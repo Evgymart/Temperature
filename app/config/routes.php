@@ -6,6 +6,6 @@ use Alignant\Temperature\controller\SensorController;
 
 /** @var Router $router */
 
-$router->addGet(SensorController::class, 'read');
+$router->addGet(SensorController::class, 'read', 'ip');
 
 $router->addPost(ApiController::class, 'push');

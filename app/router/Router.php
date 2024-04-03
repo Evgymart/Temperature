@@ -24,13 +24,14 @@ class Router
         ];
     }
 
-    public function addGet(string $className, string $method)
+    public function addGet(string $className, string $method, string $param = null)
     {
         $uri = $this->formUri($className, $method);
         $this->routes[$uri] = [
             'method' => 'GET',
             'class' => $className,
             'call' => $method,
+            'param' => $param
         ];
     }
 
@@ -43,11 +44,12 @@ class Router
 
     public function route(Request $request): Response
     {
-        $route = $this->routes[$request->getRequestUri()] ?? null;
-        if (is_null($route)) {
+        $routeData = $this->getRouteData($request->getRequestUri());
+        if (empty($routeData)) {
             throw new HttpException(403, 'Not found');
         }
 
+        $route = $routeData['route'];
         $method = $route['method'] ?? '';
         if ($request->getMethod() != $method) {
             throw new HttpException(403, 'Bad method');
@@ -64,7 +66,13 @@ class Router
             throw new HttpException(502, 'Internal class error');
         }
 
-        $response = $controller->{$func}();
+        $param = $routeData['param'] ?? null;
+        if (is_null($param)) {
+            $response = $controller->{$func}();
+        } else {
+            $response = $controller->{$func}($param);
+        }
+
         if (get_class($response) != Response::class) {
             throw new HttpException(502, 'Internal class error');
         }
@@ -77,5 +85,27 @@ class Router
         $className = substr($className, strrpos($className, '\\') + 1);
         $route = substr($className, 0, strrpos($className, 'Controller'));
         return strtolower('/' . $route . '/' . $method);
+    }
+
+    private function getRouteData(string $uri): array
+    {
+        $route = $this->routes[$uri] ?? null;
+        if (!is_null($route)) {
+            return [
+                'route' => $route,
+                'param' => null,
+            ];
+        }
+
+        $newUri = substr($uri, 0, strrpos($uri, '/'));
+        $param = substr($uri, strrpos($uri, '/') + 1);
+        if (!empty($this->routes[$newUri]['param'])) {
+            return [
+                'route' => $this->routes[$newUri],
+                'param' => $param,
+            ];
+        }
+
+        return [];
     }
 }
