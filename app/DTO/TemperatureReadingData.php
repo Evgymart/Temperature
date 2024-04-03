@@ -4,7 +4,7 @@ namespace Alignant\Temperature\DTO;
 
 use DateTimeImmutable;
 
-class TemperatureReadingData extends BasicDTO
+class TemperatureReadingData extends JsonDTO
 {
     public function __construct(
         readonly public string $sensor_uuid,

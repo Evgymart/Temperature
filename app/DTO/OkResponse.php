@@ -2,7 +2,7 @@
 declare(strict_types=1);
 namespace Alignant\Temperature\DTO;
 
-class OkResponse extends BasicDTO
+class OkResponse extends JsonDTO
 {
     public readonly string $status;
     public function __construct(

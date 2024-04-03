@@ -34,7 +34,7 @@ class TemperatureReading
                 ]
             );
 
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return false;
         }
 

@@ -2,7 +2,7 @@
 
 namespace Alignant\Temperature\DTO;
 
-abstract class BasicDTO
+abstract class JsonDTO
 {
     public function toJSON(): string
     {

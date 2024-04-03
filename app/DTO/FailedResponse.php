@@ -2,7 +2,7 @@
 
 namespace Alignant\Temperature\DTO;
 
-class FailedResponse extends BasicDTO
+class FailedResponse extends JsonDTO
 {
     public readonly string $status;
     public function __construct(
