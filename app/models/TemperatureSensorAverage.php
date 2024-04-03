@@ -9,7 +9,7 @@ class TemperatureSensorAverage
 {
     private ?string $sensorUUID;
 
-    public function setSensorUUID(string $uuid)
+    public function setSensorUUID(string $uuid): void
     {
         $this->sensorUUID = $uuid;
     }
@@ -31,7 +31,7 @@ class TemperatureSensorAverage
             $result = $stmt->executeQuery();
             $averageTemperature = $result->fetchOne();
             return new TemperatureSensorAverageData($averageTemperature, $this->sensorUUID);
-        } catch (\Throwable $e) {
+        } catch (\Throwable) {
             return null;
         }
     }

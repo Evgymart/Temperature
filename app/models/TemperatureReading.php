@@ -5,16 +5,14 @@ namespace Alignant\Temperature\models;
 
 use Alignant\Temperature\DTO\TemperatureReadingData;
 use DateTimeImmutable;
-use Doctrine\DBAL\Exception;
 
 class TemperatureReading
 {
     private array $data;
-    public function setData(array $data)
+    public function setData(array $data): void
     {
         $this->data = $data;
     }
-
 
     public function save(): bool
     {
@@ -34,7 +32,7 @@ class TemperatureReading
                 ]
             );
 
-        } catch (\Exception) {
+        } catch (\Throwable) {
             return false;
         }
 

@@ -14,7 +14,7 @@ class Router
 
     private array $routes;
 
-    public function addPost(string $className, string $method)
+    public function addPost(string $className, string $method): void
     {
         $uri = $this->formUri($className, $method);
         $this->routes[$uri] = [
@@ -24,7 +24,7 @@ class Router
         ];
     }
 
-    public function addGet(string $className, string $method, string $param = null)
+    public function addGet(string $className, string $method, string $param = null): void
     {
         $uri = $this->formUri($className, $method);
         $this->routes[$uri] = [
@@ -35,7 +35,7 @@ class Router
         ];
     }
 
-    public function init(string $root)
+    public function init(string $root): void
     {
         $routesFile = $root . DIRECTORY_SEPARATOR . '/app/config/routes.php';
         $router = $this;
@@ -89,7 +89,7 @@ class Router
 
     private function getRouteData(string $uri): array
     {
-        $uri = strtok($uri, '?');;
+        $uri = strtok($uri, '?');
         $route = $this->routes[$uri] ?? null;
         if (!is_null($route)) {
             return [

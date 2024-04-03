@@ -17,7 +17,7 @@ class App
     private ?Connection $conn;
     private ?Router $router;
 
-    public function __construct(private string $rootPath)
+    public function __construct(private readonly string $rootPath)
     {
         $this->initConnection();
     }

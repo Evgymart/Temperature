@@ -7,13 +7,9 @@ use Alignant\Temperature\DTO\MockSensorReadingData;
 class MockSensorReading
 {
     private ?string $ip;
-    public function setIP(string $ip)
+    public function setIP(string $ip): void
     {
-        if (!filter_var($ip, FILTER_VALIDATE_IP)) {
-            $this->ip = null;
-        } else {
-            $this->ip = $ip;
-        }
+        $this->ip = filter_var($ip, FILTER_VALIDATE_IP) ? $ip : null;
     }
 
     public function read(): ?MockSensorReadingData
@@ -21,8 +17,6 @@ class MockSensorReading
         if (is_null($this->ip)) {
             return null;
         }
-
-        $sensorData = null;
 
         global $Application;
         $conn = $Application->getConnection();
@@ -35,12 +29,12 @@ class MockSensorReading
             $readingCount = $data['reading_count'] ?? null;
             if (is_null($readingCount)) {
                 $conn->insert('mock_sensor', [
-                    'ip' => $this->ip
+                    'ip' => $this->ip,
                 ]);
                 $sensorData = new MockSensorReadingData(0, $this->generateTemperature());
             } else {
                 $conn->update('mock_sensor', ['reading_count' => $readingCount + 1], ['id' => $data['id']]);
-                $sensorData = new MockSensorReadingData($readingCount, $this->generateTemperature());
+                $sensorData = new MockSensorReadingData($readingCount + 1, $this->generateTemperature());
             }
 
             $conn->commit();
