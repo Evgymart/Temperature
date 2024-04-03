@@ -14,7 +14,6 @@ class TemperatureAverage
         global $Application;
         $conn = $Application->getConnection();
         try {
-            $stmt = null;
             $latestDate = $this->getLatestDate();
             if (is_null($latestDate)) {
                 $sql = 'SELECT AVG(temperature) FROM temperature_reading LIMIT 1;';
