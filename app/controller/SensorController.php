@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace Alignant\Temperature\controller;
 
 use Alignant\Temperature\DTO\FailedResponse;

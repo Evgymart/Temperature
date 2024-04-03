@@ -1,7 +1,6 @@
 <?php
 
 namespace Alignant\Temperature\models;
-
 use Alignant\Temperature\DTO\TemperatureSensorAverageData;
 use DateTimeImmutable;
 

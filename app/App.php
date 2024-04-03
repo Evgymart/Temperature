@@ -1,6 +1,5 @@
 <?php
 declare(strict_types=1);
-
 namespace Alignant\Temperature;
 
 use Alignant\Temperature\DTO\ErrorResponse;

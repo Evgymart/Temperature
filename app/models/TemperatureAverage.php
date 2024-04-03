@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace Alignant\Temperature\models;
 
 use Alignant\Temperature\DTO\AverageTemperatureData;
@@ -25,7 +25,7 @@ class TemperatureAverage
             }
             $result = $stmt->executeQuery();
             $averageTemperature = $result->fetchOne();
-            return new AverageTemperatureData($averageTemperature, $this->days);
+            return new AverageTemperatureData((float)$averageTemperature, $this->days);
         } catch (\Throwable) {
             return null;
         }
