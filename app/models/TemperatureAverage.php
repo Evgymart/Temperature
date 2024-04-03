@@ -33,7 +33,7 @@ class TemperatureAverage
 
     public function setDays(mixed $days): void
     {
-        $this->days = !is_null($days) ? (int)$days : null;
+        $this->days = !is_int($days) && $days > 0 ? (int)$days : null;
     }
 
     /**
