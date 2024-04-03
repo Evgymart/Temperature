@@ -56,10 +56,4 @@ class TemperatureReading
         $now = new DateTimeImmutable('now');
         return new TemperatureReadingData((string)$uuid, $temp, $now);
     }
-
-    private function getSQL(TemperatureReadingData $data): string
-    {
-
-
-    }
 }

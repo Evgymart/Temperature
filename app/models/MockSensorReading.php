@@ -46,7 +46,6 @@ class MockSensorReading
             $conn->commit();
 
         } catch (\Throwable $e) {
-            die($e->getMessage());
             return null;
         }
 
