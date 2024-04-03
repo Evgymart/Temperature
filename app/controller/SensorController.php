@@ -18,6 +18,7 @@ class SensorController extends BaseController
             $responseData = new FailedResponse('read');
             $response->headers->set('Content-Type', 'application/json');
             $response->setContent($responseData->toJSON());
+            return $response;
         }
 
         $response->setContent($sensorData->toCSV());
