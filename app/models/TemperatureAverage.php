@@ -17,10 +17,10 @@ class TemperatureAverage
             $stmt = null;
             $latestDate = $this->getLatestDate();
             if (is_null($latestDate)) {
-                $sql = 'SELECT AVG(temperature) FROM temperature_reading;';
+                $sql = 'SELECT AVG(temperature) FROM temperature_reading LIMIT 1;';
                 $stmt = $conn->prepare($sql);
             } else {
-                $sql = 'SELECT AVG(temperature) FROM temperature_reading WHERE reading_time > ?;';
+                $sql = 'SELECT AVG(temperature) FROM temperature_reading WHERE reading_time > ? LIMIT 1;';
                 $stmt = $conn->prepare($sql);
                 $stmt->bindValue(1, $latestDate->format('Y-m-d H:i:s'));
             }

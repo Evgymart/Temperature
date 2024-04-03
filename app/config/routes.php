@@ -10,3 +10,4 @@ $router->addGet(SensorController::class, 'read', 'ip');
 
 $router->addPost(ApiController::class, 'push');
 $router->addGet(ApiController::class, 'average');
+$router->addGet(ApiController::class, 'sensor_average');

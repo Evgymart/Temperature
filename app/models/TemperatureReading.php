@@ -44,7 +44,7 @@ class TemperatureReading
     private function getValidatedData(): ?TemperatureReadingData
     {
         $temp = $this->data['reading']['temperature'] ?? null;
-        if (!is_float($temp)) {
+        if (!is_float($temp) && !is_int($temp)) {
             return null;
         }
 
