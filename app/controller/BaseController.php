@@ -9,10 +9,9 @@ use Symfony\Component\HttpFoundation\Response;
 abstract class BaseController
 {
     private Response $response;
-    public function __construct(private Request $request)
+    public function __construct(private readonly Request $request)
     {
         $this->response = new Response();
-        $this->response->headers->set('Content-Type', 'application/json');
     }
 
     protected function getRequest(): Request

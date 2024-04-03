@@ -10,6 +10,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors',1);
 error_reporting(E_ALL);
 
-$application = new App(__DIR__);
-$application->setRouter(new Router());
-$application->run();
+global $Application;
+$Application = new App(__DIR__);
+$Application->setRouter(new Router());
+$Application->run();

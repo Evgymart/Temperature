@@ -23,7 +23,8 @@ final class Version20240403150751 extends AbstractMigration
         CREATE TABLE temperature_reading (
             id INT GENERATED ALWAYS AS IDENTITY,
             sensor_uuid VARCHAR(255) NOT NULL,
-            reading_time TIMESTAMP NOT NULL
+            reading_time TIMESTAMP NOT NULL,
+            temperature DOUBLE PRECISION NOT NULL
         );
 SQL;
 

@@ -5,16 +5,21 @@ namespace Alignant\Temperature;
 
 use Alignant\Temperature\DTO\ErrorResponse;
 use Alignant\Temperature\router\Router;
+use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\DriverManager;
+use Doctrine\DBAL\Tools\DsnParser;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class App
 {
+    private ?Connection $conn;
     private ?Router $router;
 
     public function __construct(private string $rootPath)
     {
+        $this->initConnection();
     }
 
 
@@ -44,12 +49,18 @@ class App
             $response->send();
         }
 
-        die($response->getContent());
+        $response->send();
     }
 
-    private function routing()
+    public function getConnection(): Connection
     {
-
+        return $this->conn;
     }
 
+    private function initConnection(): void
+    {
+        $dsn = new DsnParser(['postgres' => 'pdo_pgsql']);
+        $params = require_once $this->rootPath . '/migrations-db.php';
+        $this->conn = DriverManager::getConnection($params);
+    }
 }
