@@ -12,6 +12,7 @@
         }
     ],
     "require": {
-        "symfony/http-kernel": "^7.0"
+        "symfony/http-kernel": "^7.0",
+        "doctrine/migrations": "^3.7"
     }
 }
