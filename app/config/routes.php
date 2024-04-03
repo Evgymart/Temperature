@@ -9,3 +9,4 @@ use Alignant\Temperature\controller\SensorController;
 $router->addGet(SensorController::class, 'read', 'ip');
 
 $router->addPost(ApiController::class, 'push');
+$router->addGet(ApiController::class, 'average');

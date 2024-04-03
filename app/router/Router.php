@@ -89,6 +89,7 @@ class Router
 
     private function getRouteData(string $uri): array
     {
+        $uri = strtok($uri, '?');;
         $route = $this->routes[$uri] ?? null;
         if (!is_null($route)) {
             return [
